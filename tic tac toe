@@ -1,0 +1,44 @@
+import random
+
+def compchoice():
+    return random.choice(["rock", "paper", "scissors"])
+
+def winner(player, comp):
+    if player == comp:
+        return "Draw"
+    elif (player == "rock" and comp == "scissors") or \
+         (player == "scissors" and comp == "paper") or \
+         (player == "paper" and comp == "rock"):
+        return "Player wins"
+    else:
+        return "Computer wins"
+
+def play():
+    player_score = 0
+    comp_score = 0
+    while True:
+        player_ch = input("Enter your choice ('rock', 'paper', 'scissors') or 'q' to quit: ").lower()
+       
+        if player_ch == "q":
+            print("\nFinal Result:")
+            print(f"Player score: {player_score}")
+            print(f"Computer score: {comp_score}")
+            break
+        
+        if player_ch not in ["rock", "paper", "scissors"]:
+            print("Invalid input! Try again.")
+            continue
+        
+        comp_ch = compchoice()
+        print(f"Computer chose: {comp_ch}")
+        result = winner(player_ch, comp_ch)
+        print(result)
+
+        if result == "Player wins":
+            player_score += 1
+        elif result == "Computer wins":
+            comp_score += 1
+
+        print(f"Score -> Player: {player_score}, Computer: {comp_score}\n")
+
+play()
